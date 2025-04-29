@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "92nhGWuW0Ng15xMc4RUc8OdcndLc0/xvHRPoNUEwZJBu3wpR0HSFBtv+NfGvp9R+RRKvN6h2FRYMkAr63xjNKQ==",
+  "success": true,
+  "projectFilePath": "C:\\CodingExcercise\\RiaCode\\Rio.Coding.Exercise.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Aslam\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.14\\microsoft.netcore.app.host.win-x64.5.0.14.nupkg.sha512"
+  ],
+  "logs": []
+}
