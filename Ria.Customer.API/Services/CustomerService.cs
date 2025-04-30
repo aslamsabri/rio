@@ -30,6 +30,7 @@ namespace Ria.CustomerAPI.Services
                     customer.Age <= 0 || customer.Id <= 0)
                 {
                     errors.Add($"Customer {customer.Id} is missing fields.");
+
                     continue;
                 }
 
@@ -59,6 +60,7 @@ namespace Ria.CustomerAPI.Services
             while (i < _customers.Count)
             {
                 var c = _customers[i];
+
                 if (string.Compare(customer.LastName, c.LastName) < 0 ||
                    (customer.LastName == c.LastName && string.Compare(customer.FirstName, c.FirstName) < 0))
                     break;
@@ -78,11 +80,12 @@ namespace Ria.CustomerAPI.Services
         {
             if (File.Exists(_filePath))
             {
-                var json = File.ReadAllText(_filePath);
-                return JsonSerializer.Deserialize<List<Customer>>(json) ?? new List<Customer>();
+                var jsonData = File.ReadAllText(_filePath);
+
+
+                return JsonSerializer.Deserialize<List<Customer>>(jsonData) ?? new List<Customer>();
             }
             return new List<Customer>();
         }
     }
-}
 }
