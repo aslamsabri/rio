@@ -14,12 +14,12 @@ namespace Ria.CustomerAPI.Services
 
         public CustomerService()
         {
-            _customers = LoadCustomers();
+            _customers = GetCustomers();
         }
 
         public IEnumerable<Customer> GetAll() => _customers;
 
-        public List<string> AddCustomers(List<Customer> newCustomers)
+        public List<string> InsertCustomers(List<Customer> newCustomers)
         {
             List<string> errors = new();
 
@@ -45,7 +45,7 @@ namespace Ria.CustomerAPI.Services
                     continue;
                 }
 
-                InsertInOrder(customer);
+                InsertCustomerSorted(customer);
             }
 
             SaveCustomers();
@@ -53,7 +53,7 @@ namespace Ria.CustomerAPI.Services
             return errors;
         }
 
-        private void InsertInOrder(Customer customer)
+        private void InsertCustomerSorted(Customer customer)
         {
             int i = 0;
             while (i < _customers.Count)
@@ -70,10 +70,11 @@ namespace Ria.CustomerAPI.Services
         private void SaveCustomers()
         {
             Directory.CreateDirectory("Data");
+
             File.WriteAllText(_filePath, JsonSerializer.Serialize(_customers));
         }
 
-        private List<Customer> LoadCustomers()
+        private List<Customer> GetCustomers()
         {
             if (File.Exists(_filePath))
             {
