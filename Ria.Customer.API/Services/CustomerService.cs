@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using Ria.CustomerAPI.Models;
 
@@ -44,6 +45,7 @@ namespace Ria.CustomerAPI.Services
                     continue;
                 }
 
+                InsertInOrder(customer);
             }
 
             SaveCustomers();
@@ -51,12 +53,23 @@ namespace Ria.CustomerAPI.Services
             return errors;
         }
 
-       
+        private void InsertInOrder(Customer customer)
+        {
+            int i = 0;
+            while (i < _customers.Count)
+            {
+                var c = _customers[i];
+                if (string.Compare(customer.LastName, c.LastName) < 0 ||
+                   (customer.LastName == c.LastName && string.Compare(customer.FirstName, c.FirstName) < 0))
+                    break;
+                i++;
+            }
+            _customers.Insert(i, customer);
+        }
 
         private void SaveCustomers()
         {
             Directory.CreateDirectory("Data");
-
             File.WriteAllText(_filePath, JsonSerializer.Serialize(_customers));
         }
 
@@ -65,11 +78,8 @@ namespace Ria.CustomerAPI.Services
             if (File.Exists(_filePath))
             {
                 var json = File.ReadAllText(_filePath);
-
                 return JsonSerializer.Deserialize<List<Customer>>(json) ?? new List<Customer>();
-
             }
-
             return new List<Customer>();
         }
     }
