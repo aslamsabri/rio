@@ -30,15 +30,16 @@ namespace Rio.Coding.Exercise
                     Console.WriteLine($" Oops! The amount: {ammount} can't be split using this combination");
 
                 }
-                Console.WriteLine($"\nWays to make {ammount} in EUR:");
 
-                GenerateCombinations(ammount, 0, new int[noteTypes.Length]);
+                Console.WriteLine($"{ammount} EUR can be paid in these ways:");
+
+                GetCombinations(ammount, 0, new int[noteTypes.Length]);
 
             }
 
 
         }
-        private void GenerateCombinations(int remaining, int idx, int[] used)
+        private void GetCombinations(int remaining, int idx, int[] used)
         {
             if (noteTypes.Length == 0)
             {
@@ -53,7 +54,7 @@ namespace Rio.Coding.Exercise
                 {
                     used[idx] = remaining/ noteTypes[idx];
 
-                    Print(used);
+                    ShowBreakdown(used);
                 }
 
                 return;
@@ -62,11 +63,13 @@ namespace Rio.Coding.Exercise
             for (int i = 0; i <= maxCount; i++)
             {
                 used[idx] = i;
-                GenerateCombinations( remaining - i * noteTypes[idx], idx + 1, used);
+                // Try every possible number of bills for the current note type
+
+                GetCombinations( remaining - i * noteTypes[idx], idx + 1, used);
             }
 
         }
-        private void Print(int[] used)
+        private void ShowBreakdown(int[] used)
         {
             var parts = new List<string>();
 
