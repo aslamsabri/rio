@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "N3EpSexgz+KCZh5GzMRTEB/njbAVXWHWqaF9jCby3IpekJ6HSXXDORZ/ZJOzGvfQDOTvV3rmO8+PyjFyZ5Fs3g==",
+  "dgSpecHash": "3BWlAjOFZjygoyWnCsXHLVYccBIVJN+pdFd5lg6o9dvKengcKxHuyKZCLKEhlls4F76J97zEQ6CuO8Y6NEDZ/A==",
   "success": true,
-  "projectFilePath": "C:\\CodingExcercise\\RiaCode\\Rio.Coding.Exercise.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\CodingExcercise\\RiaCode\\Ria.ATM.Cashier.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Aslam\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.14\\microsoft.netcore.app.host.win-x64.5.0.14.nupkg.sha512"
+  ],
   "logs": []
 }

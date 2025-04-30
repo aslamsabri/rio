@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Rio.Coding.Exercise")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5df17690bc292328af4a170bb063ed421e949a59")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d5c9d245fb4e5e305a89b72fee8bd1b12a8eb241")]
 [assembly: System.Reflection.AssemblyProductAttribute("Rio.Coding.Exercise")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Rio.Coding.Exercise")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

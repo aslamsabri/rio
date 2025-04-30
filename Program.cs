@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace Rio.Coding.Exercise
+namespace Ria.ATM.Cashier
 {
     class Program
     {
