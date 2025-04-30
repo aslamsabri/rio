@@ -6,7 +6,13 @@ namespace Rio.Coding.Exercise
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            int[] denominations = { 10, 50, 100 }; // You can change this
+
+            int[] amounts = { 30, 50, 60, 80, 140, 230, 370, 610, 980 };
+
+            var machine = new ATMCashier(denominations);
+
+            machine.ShowCombination(amounts);
         }
     }
 }
