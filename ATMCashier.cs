@@ -29,6 +29,7 @@ namespace Rio.Coding.Exercise
                 {
                     Console.WriteLine($" Oops! The amount: {ammount} can't be split using this combination");
 
+                    return;
                 }
 
                 Console.WriteLine($"{ammount} EUR can be paid in these ways:");
