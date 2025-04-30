@@ -29,6 +29,8 @@ namespace Rio.Coding.Exercise
                     Console.WriteLine($" This {ammount} can not have combination");
 
                 }
+                Console.WriteLine($"\nWays to make {ammount} in EUR:");
+
                 GenerateCombinations(ammount, 0, new int[notes.Length]);
 
             }
@@ -52,7 +54,7 @@ namespace Rio.Coding.Exercise
             for (int i = 0; i <= maxCount; i++)
             {
                 used[idx] = i;
-                GenerateCombinations(remaining - i * notes[idx], idx + 1, used);
+                GenerateCombinations( remaining - i * notes[idx], idx + 1, used);
             }
 
         }
