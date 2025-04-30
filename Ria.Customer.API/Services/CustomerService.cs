@@ -1,0 +1,77 @@
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
+using Ria.CustomerAPI.Models;
+
+namespace Ria.CustomerAPI.Services
+{
+    public class CustomerService
+    {
+        private readonly string _filePath = "Data/customers.json";
+
+        private readonly List<Customer> _customers;
+
+        public CustomerService()
+        {
+            _customers = LoadCustomers();
+        }
+
+        public IEnumerable<Customer> GetAll() => _customers;
+
+        public List<string> AddCustomers(List<Customer> newCustomers)
+        {
+            List<string> errors = new();
+
+            foreach (var customer in newCustomers)
+            {
+                if (string.IsNullOrWhiteSpace(customer.FirstName) ||
+                    string.IsNullOrWhiteSpace(customer.LastName) ||
+                    customer.Age <= 0 || customer.Id <= 0)
+                {
+                    errors.Add($"Customer {customer.Id} is missing fields.");
+                    continue;
+                }
+
+                if (customer.Age < 18)
+                {
+                    errors.Add($"Customer {customer.Id} is underage.");
+                    continue;
+                }
+
+                if (_customers.Any(c => c.Id == customer.Id))
+                {
+                    errors.Add($"Customer ID {customer.Id} already exists.");
+                    continue;
+                }
+
+            }
+
+            SaveCustomers();
+
+            return errors;
+        }
+
+       
+
+        private void SaveCustomers()
+        {
+            Directory.CreateDirectory("Data");
+
+            File.WriteAllText(_filePath, JsonSerializer.Serialize(_customers));
+        }
+
+        private List<Customer> LoadCustomers()
+        {
+            if (File.Exists(_filePath))
+            {
+                var json = File.ReadAllText(_filePath);
+
+                return JsonSerializer.Deserialize<List<Customer>>(json) ?? new List<Customer>();
+
+            }
+
+            return new List<Customer>();
+        }
+    }
+}
+}

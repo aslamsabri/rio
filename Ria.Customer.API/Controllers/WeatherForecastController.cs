@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Ria.Customer.API.Controllers
+namespace Ria.CustomerAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]

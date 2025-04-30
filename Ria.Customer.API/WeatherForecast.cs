@@ -1,6 +1,6 @@
 using System;
 
-namespace Ria.Customer.API
+namespace Ria.CustomerAPI
 {
     public class WeatherForecast
     {
