@@ -9,6 +9,7 @@ namespace Ria.CustomerAPI.Services
     public class CustomerService
     {
         private readonly string _filePath = "Data/customers.json";
+        private static readonly object _fileLock = new object();
 
         private readonly List<Customer> _customers;
 
@@ -71,9 +72,12 @@ namespace Ria.CustomerAPI.Services
 
         private void SaveCustomers()
         {
-            Directory.CreateDirectory("Data");
+            lock (_fileLock)
+            {
+                Directory.CreateDirectory("Data");
+                File.WriteAllText(_filePath, JsonSerializer.Serialize(_customers));
+            }
 
-            File.WriteAllText(_filePath, JsonSerializer.Serialize(_customers));
         }
 
         private List<Customer> GetCustomers()
