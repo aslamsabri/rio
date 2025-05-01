@@ -39,13 +39,13 @@ namespace Ria.CustomerAPI.Services
                     errors.Add($"Customer {customer.Id} is underage.");
                     continue;
                 }
-
-                if (_customers.Any(c => c.Id == customer.Id))
-                {
-                    errors.Add($"Customer ID {customer.Id} already exists.");
-                    continue;
+                if (_customers.Count>0) {
+                    if (_customers.Any(c => c != null && c.Id == customer.Id))
+                    {
+                        errors.Add($"Customer ID {customer.Id} already exists.");
+                        continue;
+                    }
                 }
-
                 InsertCustomerSorted(customer);
             }
 

@@ -12,7 +12,7 @@ namespace Ria.customers.Simulator.Services
     {
         private static readonly HttpClient _client = new HttpClient();
 
-        private static readonly string _baseUrl = "http://localhost:39498/customers";
+        private static readonly string _baseUrl = "http://localhost:39418/customers";
 
         private static int _globalId = 1;
 
@@ -28,6 +28,7 @@ namespace Ria.customers.Simulator.Services
 
         public async Task PostRandomCustomersAsync()
         {
+            List<Customer> batch = CreateRandomCustomers();
 
             try
             {
@@ -57,7 +58,27 @@ namespace Ria.customers.Simulator.Services
             }
         }
 
-        
+        private List<Customer> CreateRandomCustomers()
+        {
+            List<Customer> list = new List<Customer>();
+            Random rand = new Random();
+            int count = rand.Next(2, 5);
+
+            for (int i = 0; i < count; i++)
+            {
+                var cust = new Customer
+                {
+                    FirstName = FirstNames[rand.Next(FirstNames.Length)],
+                    LastName = LastNames[rand.Next(LastNames.Length)],
+                    Age = rand.Next(10, 91),
+                    Id = Interlocked.Increment(ref _globalId)
+                };
+
+                list.Add(cust);
+            }
+
+            return list;
+        }
     }
 }
 
