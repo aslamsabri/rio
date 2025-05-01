@@ -64,7 +64,7 @@ namespace Ria.ATM.Cashier
             for (int i = 0; i <= maxCount; i++)
             {
                 used[idx] = i;
-                // Try every possible number of bills for the current note type
+                // Try every possible number of noteType for the current note type
 
                 GetCombinations( remaining - i * noteTypes[idx], idx + 1, used);
             }

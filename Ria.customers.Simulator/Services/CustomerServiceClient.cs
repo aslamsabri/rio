@@ -1,4 +1,5 @@
-﻿using Ria.CustomerAPI.Models;
+﻿using Microsoft.Extensions.Options;
+using Ria.CustomerAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,21 +11,22 @@ namespace Ria.customers.Simulator.Services
 {
     internal class CustomerServiceClient
     {
-        private static readonly HttpClient _client = new HttpClient();
+        private readonly HttpClient httpClient;
+        private readonly string baseUrl;
+        private readonly string[] firstNames;
+        private readonly string[] lastNames;
+        private int globalId;
 
-        private static readonly string _baseUrl = "http://localhost:39418/customers";
+        public CustomerServiceClient(HttpClient client, IOptions<CustomerSimulatorOptions> config)
+        {
+            httpClient = client;
+            var options = config.Value;
 
-        private static int _globalId = 1;
-
-        private static readonly string[] FirstNames = {
-            "Leia", "Sadie", "Jose", "Sara", "Frank",
-            "Dewey", "Tomas", "Joel", "Lukas", "Carlos"
-        };
-
-        private static readonly string[] LastNames = {
-            "Liberty", "Ray", "Harrison", "Ronan", "Drew",
-            "Powell", "Larsen", "Chan", "Anderson", "Lane"
-        };
+            baseUrl = options.BaseUrl;
+            firstNames = options.FirstNames;
+            lastNames = options.LastNames;
+            globalId = options.StartingId;
+        }
 
         public async Task PostRandomCustomersAsync()
         {
@@ -32,14 +34,14 @@ namespace Ria.customers.Simulator.Services
 
             try
             {
-                var response = await _client.PostAsJsonAsync(_baseUrl, batch);
+                var response = await httpClient.PostAsJsonAsync(baseUrl, batch);
                 var result = await response.Content.ReadAsStringAsync();
 
                 Console.WriteLine($"POST /customers ({batch.Count}) => {(int)response.StatusCode}: {result}");
             }
             catch (Exception ex)
             {
-                Console.WriteLine("POST error: " + ex.Message);
+                Console.WriteLine($"[{DateTime.Now}] Post error: " + ex.Message);
             }
         }
 
@@ -47,7 +49,7 @@ namespace Ria.customers.Simulator.Services
         {
             try
             {
-                var response = await _client.GetAsync(_baseUrl);
+                var response = await httpClient.GetAsync(baseUrl);
                 var content = await response.Content.ReadAsStringAsync();
 
                 Console.WriteLine($"GET /customers => {(int)response.StatusCode}, length: {content.Length} chars");
@@ -61,17 +63,19 @@ namespace Ria.customers.Simulator.Services
         private List<Customer> CreateRandomCustomers()
         {
             List<Customer> list = new List<Customer>();
+
             Random rand = new Random();
+
             int count = rand.Next(2, 5);
 
             for (int i = 0; i < count; i++)
             {
                 var cust = new Customer
                 {
-                    FirstName = FirstNames[rand.Next(FirstNames.Length)],
-                    LastName = LastNames[rand.Next(LastNames.Length)],
+                    FirstName = firstNames[rand.Next(firstNames.Length)],
+                    LastName = lastNames[rand.Next(lastNames.Length)],
                     Age = rand.Next(10, 91),
-                    Id = Interlocked.Increment(ref _globalId)
+                    Id = Interlocked.Increment(ref globalId)
                 };
 
                 list.Add(cust);
