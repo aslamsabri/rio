@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ria.ATM.Cashier", "Ria.ATM.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ria.CustomerAPI", "Ria.Customer.API\Ria.CustomerAPI.csproj", "{6E00758D-6753-4BEC-9906-791F570FC298}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ria.customers.Simulator", "Ria.customers.Simulator\Ria.customers.Simulator.csproj", "{B836B2AA-F0C5-4B8B-A8FD-ACAB5D43E01E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6E00758D-6753-4BEC-9906-791F570FC298}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E00758D-6753-4BEC-9906-791F570FC298}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E00758D-6753-4BEC-9906-791F570FC298}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B836B2AA-F0C5-4B8B-A8FD-ACAB5D43E01E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B836B2AA-F0C5-4B8B-A8FD-ACAB5D43E01E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B836B2AA-F0C5-4B8B-A8FD-ACAB5D43E01E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B836B2AA-F0C5-4B8B-A8FD-ACAB5D43E01E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

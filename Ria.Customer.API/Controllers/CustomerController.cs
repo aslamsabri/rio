@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace Ria.CustomerAPI.Controllers
 {
     [ApiController]
-    [Route("customer")]
+    [Route("customers")]
     public class CustomerController : Controller
     {
 

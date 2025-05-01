@@ -6,9 +6,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Ria.Customer.API\**" />
     <Compile Remove="Ria.CustomerAPI\**" />
+    <Compile Remove="Ria.customers.Simulator\**" />
+    <EmbeddedResource Remove="Ria.Customer.API\**" />
     <EmbeddedResource Remove="Ria.CustomerAPI\**" />
+    <EmbeddedResource Remove="Ria.customers.Simulator\**" />
+    <None Remove="Ria.Customer.API\**" />
     <None Remove="Ria.CustomerAPI\**" />
+    <None Remove="Ria.customers.Simulator\**" />
   </ItemGroup>
 
 </Project>
